@@ -1,6 +1,28 @@
-import { motion } from 'framer-motion'
+'use client'
 
-export default function Landing() {
+import { useState } from 'react'
+import { motion } from 'framer-motion'
+import Typewriter from './Typewriter'
+
+interface LandingProps {
+  onTypingComplete?: () => void
+}
+
+export default function Landing({ onTypingComplete }: LandingProps) {
+  const [showOtherElements, setShowOtherElements] = useState(false)
+
+  const handleTypingComplete = () => {
+    // Call the navbar callback immediately
+    if (onTypingComplete) {
+      onTypingComplete()
+    }
+    
+    // Show other elements after 0.5 second delay
+    setTimeout(() => {
+      setShowOtherElements(true)
+    }, 500)
+  }
+
   return (
     <div className="relative h-screen w-full bg-[#001328] overflow-hidden">
       {/* Content */}
@@ -13,15 +35,33 @@ export default function Landing() {
             transition={{ delay: 0.2, duration: 1, ease: "easeOut" }}
             className="text-center lg:text-left"
           >
-            <h1 className="text-5xl lg:text-7xl font-bold mb-6 text-white">
-              Hi, I'm{' '}
-              <span className="text-[#04e3ff]">David Zhao</span>
-            </h1>
-            <p className="text-xl lg:text-2xl text-[#87A2BF] mb-8">
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 1, delay: 1 }}
+              className="mb-6"
+            >
+              <Typewriter 
+                text="Hi, I'm David Zhao" 
+                speed={120}
+                delay={2000}
+                onComplete={handleTypingComplete}
+                className="text-5xl lg:text-7xl font-bold text-white"
+              />
+            </motion.div>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: showOtherElements ? 1 : 0, y: showOtherElements ? 0 : 20 }}
+              transition={{ duration: 0.8 }}
+              className="text-xl lg:text-2xl text-[#87A2BF] mb-8"
+            >
               Full Stack Developer passionate about creating beautiful, 
               functional, and user-centered digital experiences.
-            </p>
+            </motion.p>
             <motion.button
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: showOtherElements ? 1 : 0, y: showOtherElements ? 0 : 20 }}
+              transition={{ duration: 0.8 }}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="bg-[#04e3ff] text-white px-8 py-3 rounded-lg text-lg font-semibold hover:bg-[#03b8cc] transition-colors"
@@ -38,8 +78,8 @@ export default function Landing() {
           {/* Right Side - Profile Image */}
           <motion.div
             initial={{ x: 100, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            transition={{ delay: 0.4, duration: 1, ease: "easeOut" }}
+            animate={{ x: showOtherElements ? 0 : 100, opacity: showOtherElements ? 1 : 0 }}
+            transition={{ duration: 1, ease: "easeOut" }}
             className="flex justify-center lg:justify-end"
           >
             <div className="relative">
@@ -60,8 +100,8 @@ export default function Landing() {
       {/* Scroll Indicator */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.8, duration: 0.8 }}
+        animate={{ opacity: showOtherElements ? 1 : 0, y: showOtherElements ? 0 : 20 }}
+        transition={{ duration: 0.8 }}
         className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
       >
         <motion.div

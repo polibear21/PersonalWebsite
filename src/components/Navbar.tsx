@@ -3,7 +3,11 @@
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 
-export default function Navbar() {
+interface NavbarProps {
+  showNavbar?: boolean
+}
+
+export default function Navbar({ showNavbar = false }: NavbarProps) {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const [hoveredItem, setHoveredItem] = useState<string | null>(null)
@@ -17,6 +21,10 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }
+
   const navItems = [
     { name: 'About', href: '#about' },
     { name: 'Projects', href: '#projects' },
@@ -27,8 +35,8 @@ export default function Navbar() {
 
   return (
     <motion.nav
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
+      initial={{ y: -100, opacity: 0 }}
+      animate={{ y: showNavbar ? 0 : -100, opacity: showNavbar ? 1 : 0 }}
       transition={{ duration: 0.8 }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled 
@@ -39,12 +47,13 @@ export default function Navbar() {
       <div className="container-max">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <motion.div
+          <motion.button
+            onClick={scrollToTop}
             whileHover={{ scale: 1.05 }}
-            className="text-2xl font-bold text-white"
+            className="text-2xl font-bold text-white cursor-pointer hover:text-[#04e3ff] transition-colors"
           >
             DZ
-          </motion.div>
+          </motion.button>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">

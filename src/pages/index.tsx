@@ -1,9 +1,20 @@
+'use client'
+
+import { useState } from 'react'
 import Head from 'next/head'
 import Landing from '@/components/Landing'
 import Navbar from '@/components/Navbar'
 import Sections from '@/sections'
 
 export default function Home() {
+  const [showNavbar, setShowNavbar] = useState(false)
+
+  const handleTypingComplete = () => {
+    setTimeout(() => {
+      setShowNavbar(true)
+    }, 500)
+  }
+
   return (
     <>
       <Head>
@@ -28,8 +39,8 @@ export default function Home() {
       </Head>
 
       <main className="min-h-screen">
-        <Navbar />
-        <Landing />
+        <Navbar showNavbar={showNavbar} />
+        <Landing onTypingComplete={handleTypingComplete} />
         <Sections />
       </main>
     </>
