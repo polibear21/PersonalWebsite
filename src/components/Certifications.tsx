@@ -3,64 +3,46 @@ import { motion } from 'framer-motion'
 const certifications = [
   {
     id: 1,
-    name: "AWS Certified Solutions Architect",
+    title: "AWS Certified Solutions Architect",
     issuer: "Amazon Web Services",
     date: "2023",
     credentialId: "AWS-123456",
-    image: "/api/placeholder/100/100",
-    description: "Demonstrates expertise in designing distributed systems on AWS."
+    description: "Demonstrates expertise in designing distributed systems on AWS platform.",
+    image: "/aws-logo.png"
   },
   {
     id: 2,
-    name: "Google Cloud Professional Developer",
+    title: "Google Cloud Professional Developer",
     issuer: "Google Cloud",
     date: "2023",
     credentialId: "GCP-789012",
-    image: "/api/placeholder/100/100",
-    description: "Validates ability to build scalable applications on Google Cloud Platform."
+    description: "Validates ability to build scalable applications using Google Cloud technologies.",
+    image: "/gcp-logo.png"
   },
   {
     id: 3,
-    name: "Microsoft Certified: Azure Developer Associate",
+    title: "Microsoft Certified: Azure Developer Associate",
     issuer: "Microsoft",
     date: "2022",
     credentialId: "AZ-204-345678",
-    image: "/api/placeholder/100/100",
-    description: "Proves skills in developing solutions for Microsoft Azure."
+    description: "Proves skills in developing, testing, and maintaining cloud applications.",
+    image: "/azure-logo.png"
   },
   {
     id: 4,
-    name: "MongoDB Certified Developer",
-    issuer: "MongoDB University",
+    title: "Certified Kubernetes Administrator (CKA)",
+    issuer: "Cloud Native Computing Foundation",
     date: "2022",
-    credentialId: "MDB-901234",
-    image: "/api/placeholder/100/100",
-    description: "Validates expertise in MongoDB application development."
-  },
-  {
-    id: 5,
-    name: "React Developer Certification",
-    issuer: "Meta",
-    date: "2022",
-    credentialId: "REACT-567890",
-    image: "/api/placeholder/100/100",
-    description: "Demonstrates proficiency in React development and best practices."
-  },
-  {
-    id: 6,
-    name: "Node.js Certified Developer",
-    issuer: "OpenJS Foundation",
-    date: "2021",
-    credentialId: "NODE-123789",
-    image: "/api/placeholder/100/100",
-    description: "Validates skills in Node.js development and server-side JavaScript."
+    credentialId: "CKA-901234",
+    description: "Validates skills in Kubernetes cluster administration and management.",
+    image: "/kubernetes-logo.png"
   }
 ]
 
 export default function Certifications() {
   return (
-    <section id="certifications" className="section-padding bg-white">
-      <div className="container-max">
+    <section id="certifications" className="py-20 bg-[#001328]">
+      <div className="max-w-6xl mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -68,134 +50,94 @@ export default function Certifications() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl lg:text-5xl font-bold mb-4">
-            <span className="gradient-text">Certifications</span> & Achievements
-          </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            I believe in continuous learning and professional development. 
-            Here are some of the certifications I've earned to validate my skills.
+          <h2 className="text-5xl md:text-6xl font-bold text-white mb-4">Certifications</h2>
+          <p className="text-xl text-[#87A2BF] max-w-2xl mx-auto">
+            Professional certifications that validate my expertise in various technologies and platforms
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {certifications.map((cert, index) => (
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+          {certifications.map((certification, index) => (
             <motion.div
-              key={cert.id}
+              key={certification.id}
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
+              transition={{ duration: 0.8, delay: index * 0.1 }}
               viewport={{ once: true }}
-              whileHover={{ y: -10 }}
-              className="group"
+              whileHover={{ 
+                scale: 1.05,
+                y: -10,
+                transition: { duration: 0.1, ease: "easeOut" }
+              }}
+              className="bg-[#001328] border border-[#1a2a3a] rounded-xl p-6 hover:border-[#04e3ff] transition-all duration-100 hover:shadow-xl hover:shadow-[#04e3ff]/10"
             >
-              <div className="bg-white rounded-xl shadow-lg overflow-hidden card-hover border border-gray-100">
-                {/* Certificate Header */}
-                <div className="bg-gradient-to-r from-primary to-blue-600 p-6 text-white">
-                  <div className="flex items-center justify-between mb-4">
-                    <div className="w-16 h-16 bg-white/20 rounded-lg flex items-center justify-center">
-                      <span className="text-2xl font-bold">🏆</span>
-                    </div>
-                    <div className="text-right">
-                      <span className="text-sm opacity-90">Issued</span>
-                      <div className="font-semibold">{cert.date}</div>
-                    </div>
+              {/* Certification Header */}
+              <div className="flex items-start justify-between mb-4">
+                <div className="flex items-center space-x-4">
+                  <div className="w-12 h-12 bg-[#001328] rounded-lg flex items-center justify-center border border-[#1a2a3a]">
+                    <span className="text-[#04e3ff] font-bold text-lg">
+                      {certification.issuer.charAt(0)}
+                    </span>
                   </div>
-                  <h3 className="text-xl font-bold mb-2">{cert.name}</h3>
-                  <p className="text-blue-100">{cert.issuer}</p>
-                </div>
-
-                {/* Certificate Content */}
-                <div className="p-6">
-                  <p className="text-gray-600 mb-4 leading-relaxed">
-                    {cert.description}
-                  </p>
-                  
-                  <div className="space-y-3">
-                    <div className="flex justify-between items-center">
-                      <span className="text-sm text-gray-500">Credential ID:</span>
-                      <span className="text-sm font-mono text-primary">{cert.credentialId}</span>
-                    </div>
-                    
-                    <div className="flex justify-between items-center">
-                      <span className="text-sm text-gray-500">Status:</span>
-                      <span className="text-sm text-green-600 font-medium">✓ Active</span>
-                    </div>
-                  </div>
-
-                  {/* Action Buttons */}
-                  <div className="flex gap-3 mt-6">
-                    <motion.button
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      className="flex-1 bg-primary text-white py-2 px-4 rounded-lg font-medium hover:bg-blue-600 transition-colors"
-                    >
-                      Verify
-                    </motion.button>
-                    <motion.button
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      className="flex-1 border border-primary text-primary py-2 px-4 rounded-lg font-medium hover:bg-primary hover:text-white transition-colors"
-                    >
-                      Download
-                    </motion.button>
+                  <div>
+                    <h3 className="text-xl font-bold text-white hover:text-[#04e3ff] transition-colors">
+                      {certification.title}
+                    </h3>
+                    <p className="text-[#87A2BF] text-sm">{certification.issuer}</p>
                   </div>
                 </div>
+                <div className="text-right">
+                  <span className="text-[#04e3ff] text-sm font-medium">{certification.date}</span>
+                </div>
+              </div>
+
+              {/* Description */}
+              <p className="text-[#87A2BF] mb-4 leading-relaxed">
+                {certification.description}
+              </p>
+
+              {/* Credential ID */}
+              <div className="flex items-center justify-between">
+                <span className="text-[#87A2BF] text-sm">
+                  Credential ID: <span className="text-[#04e3ff] font-mono">{certification.credentialId}</span>
+                </span>
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="bg-transparent text-[#04e3ff] border border-[#04e3ff] px-4 py-2 rounded-lg text-sm font-semibold hover:bg-[#04e3ff] hover:text-white transition-colors"
+                >
+                  Verify
+                </motion.button>
               </div>
             </motion.div>
           ))}
         </div>
 
-        {/* Additional Achievements */}
+        {/* Additional Info */}
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
           viewport={{ once: true }}
-          className="mt-16"
+          className="mt-16 text-center"
         >
-          <h3 className="text-3xl font-bold text-center mb-8 text-gray-800">
-            Additional <span className="gradient-text">Achievements</span>
-          </h3>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {[
-              { title: "Hackathon Winner", description: "1st place in 2023 Tech Innovation Challenge", icon: "🏆" },
-              { title: "Open Source Contributor", description: "50+ contributions to popular repositories", icon: "🌟" },
-              { title: "Mentor", description: "Helped 20+ developers grow their skills", icon: "👨‍🏫" },
-              { title: "Speaker", description: "Presented at 5+ tech conferences", icon: "🎤" }
-            ].map((achievement, index) => (
-              <motion.div
-                key={achievement.title}
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                whileHover={{ scale: 1.05 }}
-                className="bg-gradient-to-br from-primary to-blue-600 text-white p-6 rounded-xl text-center"
-              >
-                <div className="text-4xl mb-4">{achievement.icon}</div>
-                <h4 className="text-xl font-bold mb-2">{achievement.title}</h4>
-                <p className="text-blue-100 text-sm">{achievement.description}</p>
-              </motion.div>
-            ))}
+          <div className="bg-[#001328] border border-[#1a2a3a] rounded-xl p-8 max-w-2xl mx-auto">
+            <h3 className="text-2xl font-bold text-white mb-4">
+              Continuous Learning
+            </h3>
+            <p className="text-[#87A2BF] mb-6">
+              I believe in staying current with industry best practices and emerging technologies. 
+              These certifications represent my commitment to professional development and expertise 
+              in cloud computing and modern development practices.
+            </p>
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="bg-[#04e3ff] text-white px-8 py-3 rounded-lg text-lg font-semibold hover:bg-[#03b8cc] transition-colors"
+            >
+              View All Certifications
+            </motion.button>
           </div>
-        </motion.div>
-
-        {/* Call to Action */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.8 }}
-          viewport={{ once: true }}
-          className="text-center mt-16"
-        >
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="bg-primary text-white px-8 py-3 rounded-lg text-lg font-semibold hover:bg-blue-600 transition-colors"
-          >
-            View All Certificates
-          </motion.button>
         </motion.div>
       </div>
     </section>

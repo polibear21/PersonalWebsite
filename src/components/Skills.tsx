@@ -1,8 +1,8 @@
 import { motion } from 'framer-motion'
 
-const skillCategories = [
+const skills = [
   {
-    category: "Frontend Development",
+    category: "Frontend",
     skills: [
       { name: "React", level: 90 },
       { name: "Next.js", level: 85 },
@@ -12,7 +12,7 @@ const skillCategories = [
     ]
   },
   {
-    category: "Backend Development",
+    category: "Backend",
     skills: [
       { name: "Node.js", level: 85 },
       { name: "Express.js", level: 80 },
@@ -22,21 +22,21 @@ const skillCategories = [
     ]
   },
   {
-    category: "Tools & Technologies",
+    category: "Tools & Others",
     skills: [
       { name: "Git", level: 90 },
       { name: "Docker", level: 70 },
       { name: "AWS", level: 65 },
-      { name: "Firebase", level: 80 },
-      { name: "Figma", level: 75 }
+      { name: "Figma", level: 75 },
+      { name: "Agile", level: 80 }
     ]
   }
 ]
 
 export default function Skills() {
   return (
-    <section id="skills" className="section-padding bg-gray-50">
-      <div className="container-max">
+    <section id="skills" className="py-20 bg-[#001328]">
+      <div className="max-w-6xl mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -44,31 +44,33 @@ export default function Skills() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl lg:text-5xl font-bold mb-4">
-            My <span className="gradient-text">Skills</span>
-          </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            I've developed expertise in various technologies and frameworks. 
-            Here's a breakdown of my technical skills and proficiency levels.
+          <h2 className="text-5xl md:text-6xl font-bold text-white mb-4">Skills & Expertise</h2>
+          <p className="text-xl text-[#87A2BF] max-w-2xl mx-auto">
+            A comprehensive set of technical skills and tools I use to bring ideas to life
           </p>
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {skillCategories.map((category, categoryIndex) => (
+          {skills.map((skillCategory, categoryIndex) => (
             <motion.div
-              key={category.category}
+              key={skillCategory.category}
               initial={{ opacity: 0, y: 50 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: categoryIndex * 0.2 }}
               viewport={{ once: true }}
-              className="bg-white rounded-xl p-6 shadow-lg"
+              whileHover={{ 
+                scale: 1.05,
+                y: -10,
+                transition: { duration: 0.1, ease: "easeOut" }
+              }}
+              className="bg-[#001328] border border-[#1a2a3a] rounded-xl p-6 hover:border-[#04e3ff] transition-all duration-100 hover:shadow-xl hover:shadow-[#04e3ff]/10"
             >
-              <h3 className="text-2xl font-semibold mb-6 text-gray-800 text-center">
-                {category.category}
+              <h3 className="text-2xl font-bold text-white mb-6 text-center">
+                {skillCategory.category}
               </h3>
               
-              <div className="space-y-4">
-                {category.skills.map((skill, skillIndex) => (
+              <div className="space-y-6">
+                {skillCategory.skills.map((skill, skillIndex) => (
                   <motion.div
                     key={skill.name}
                     initial={{ opacity: 0, x: -20 }}
@@ -77,21 +79,17 @@ export default function Skills() {
                     viewport={{ once: true }}
                   >
                     <div className="flex justify-between items-center mb-2">
-                      <span className="text-gray-700 font-medium">
-                        {skill.name}
-                      </span>
-                      <span className="text-primary font-semibold">
-                        {skill.level}%
-                      </span>
+                      <span className="text-[#87A2BF] font-medium">{skill.name}</span>
+                      <span className="text-[#04e3ff] font-semibold">{skill.level}%</span>
                     </div>
                     
-                    <div className="w-full bg-gray-200 rounded-full h-2">
+                    <div className="w-full bg-[#001328] rounded-full h-2">
                       <motion.div
                         initial={{ width: 0 }}
                         whileInView={{ width: `${skill.level}%` }}
                         transition={{ duration: 1, delay: skillIndex * 0.1 }}
                         viewport={{ once: true }}
-                        className="bg-gradient-to-r from-primary to-blue-600 h-2 rounded-full"
+                        className="h-2 bg-gradient-to-r from-[#04e3ff] to-[#03b8cc] rounded-full"
                       />
                     </div>
                   </motion.div>
@@ -109,55 +107,30 @@ export default function Skills() {
           viewport={{ once: true }}
           className="mt-16"
         >
-          <h3 className="text-3xl font-bold text-center mb-8 text-gray-800">
-            Other <span className="gradient-text">Technologies</span>
-          </h3>
-          
-          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
-            {[
-              "JavaScript", "Redux", "GraphQL", "REST APIs", "Jest", "Webpack",
-              "Vite", "Prisma", "Redis", "Socket.io", "JWT", "OAuth",
-              "Responsive Design", "PWA", "SEO", "Performance Optimization",
-              "CI/CD", "Linux", "Nginx", "PM2", "Jira", "Slack"
-            ].map((tech, index) => (
-              <motion.div
-                key={tech}
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5, delay: index * 0.05 }}
-                viewport={{ once: true }}
-                whileHover={{ scale: 1.05 }}
-                className="bg-white p-4 rounded-lg shadow-md text-center hover:shadow-lg transition-shadow"
-              >
-                <span className="text-gray-700 font-medium text-sm">
-                  {tech}
-                </span>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
-
-        {/* Learning Section */}
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.8 }}
-          viewport={{ once: true }}
-          className="mt-16 text-center"
-        >
-          <h3 className="text-2xl font-bold mb-4 text-gray-800">
-            Currently Learning
-          </h3>
-          <div className="flex flex-wrap justify-center gap-4">
-            {["Rust", "WebAssembly", "Machine Learning", "Blockchain"].map((tech, index) => (
-              <motion.div
-                key={tech}
-                whileHover={{ scale: 1.05 }}
-                className="bg-gradient-to-r from-primary to-blue-600 text-white px-6 py-2 rounded-full font-medium"
-              >
-                {tech}
-              </motion.div>
-            ))}
+          <div className="bg-[#001328] border border-[#1a2a3a] rounded-xl p-8">
+            <h3 className="text-2xl font-bold text-white mb-8 text-center">
+              Additional Skills & Technologies
+            </h3>
+            
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              {[
+                "JavaScript", "Redux", "GraphQL", "REST APIs",
+                "Firebase", "Vercel", "Netlify", "Jest",
+                "Webpack", "Babel", "ESLint", "Prettier",
+                "Responsive Design", "PWA", "SEO", "Performance"
+              ].map((skill, index) => (
+                <motion.div
+                  key={skill}
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.5, delay: index * 0.05 }}
+                  viewport={{ once: true }}
+                  className="text-center p-3 bg-[#001328] rounded-lg border border-[#1a2a3a] hover:border-[#04e3ff] transition-colors"
+                >
+                  <span className="text-[#87A2BF] text-sm font-medium">{skill}</span>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </motion.div>
       </div>

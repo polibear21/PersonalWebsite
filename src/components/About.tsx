@@ -2,8 +2,8 @@ import { motion } from 'framer-motion'
 
 export default function About() {
   return (
-    <section id="about" className="section-padding bg-gray-50">
-      <div className="container-max">
+    <section id="about" className="py-20 bg-[#001328]">
+      <div className="max-w-6xl mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -11,12 +11,9 @@ export default function About() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl lg:text-5xl font-bold mb-4">
-            About <span className="gradient-text">Me</span>
-          </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            I'm a passionate full-stack developer with a love for creating innovative solutions 
-            and beautiful user experiences.
+          <h2 className="text-5xl md:text-6xl font-bold text-white mb-4">About Me</h2>
+          <p className="text-xl text-[#87A2BF] max-w-2xl mx-auto">
+            Passionate developer with a love for creating meaningful digital experiences
           </p>
         </motion.div>
 
@@ -30,18 +27,18 @@ export default function About() {
             className="flex justify-center lg:justify-start"
           >
             <div className="relative">
-              <div className="w-96 h-96 rounded-2xl bg-gradient-to-br from-primary to-blue-600 p-1">
-                <div className="w-full h-full rounded-2xl bg-white p-2">
-                  <div className="w-full h-full rounded-2xl bg-gray-200 flex items-center justify-center">
-                    <span className="text-gray-500 text-xl">
+              <div className="w-80 h-80 rounded-2xl bg-gradient-to-br from-[#04e3ff] to-[#03b8cc] p-1">
+                <div className="w-full h-full rounded-2xl bg-[#001328] p-2">
+                  <div className="w-full h-full rounded-2xl bg-[#001328] flex items-center justify-center">
+                    <span className="text-[#87A2BF] text-lg">
                       David Zhao
                     </span>
                   </div>
                 </div>
               </div>
               {/* Decorative elements */}
-              <div className="absolute -top-4 -right-4 w-8 h-8 bg-primary rounded-full"></div>
-              <div className="absolute -bottom-4 -left-4 w-6 h-6 bg-blue-400 rounded-full"></div>
+              <div className="absolute -top-4 -right-4 w-8 h-8 bg-[#04e3ff] rounded-full opacity-60"></div>
+              <div className="absolute -bottom-4 -left-4 w-6 h-6 bg-[#03b8cc] rounded-full opacity-60"></div>
             </div>
           </motion.div>
 
@@ -53,58 +50,45 @@ export default function About() {
             viewport={{ once: true }}
             className="space-y-6"
           >
-            <div>
-              <h3 className="text-2xl font-semibold mb-4 text-gray-800">
-                Who I Am
-              </h3>
-              <p className="text-lg text-gray-600 leading-relaxed">
-                I'm a dedicated developer with a strong foundation in modern web technologies. 
-                My journey in software development started with a curiosity about how things work 
-                on the web, and it has evolved into a passion for building applications that make 
-                a difference in people's lives.
-              </p>
-            </div>
+            <h3 className="text-3xl font-bold text-white mb-4">
+              Full Stack Developer & Creative Problem Solver
+            </h3>
+            
+            <p className="text-[#87A2BF] text-lg leading-relaxed">
+              I'm a passionate developer who loves turning complex problems into simple, 
+              beautiful, and intuitive solutions. With expertise in modern web technologies, 
+              I create seamless user experiences that make a difference.
+            </p>
 
-            <div>
-              <h3 className="text-2xl font-semibold mb-4 text-gray-800">
-                What I Do
-              </h3>
-              <p className="text-lg text-gray-600 leading-relaxed">
-                I specialize in full-stack development, creating responsive web applications 
-                using modern frameworks like React, Next.js, and Node.js. I enjoy working on 
-                both the frontend and backend, ensuring seamless user experiences and robust 
-                server-side solutions.
-              </p>
-            </div>
+            <p className="text-[#87A2BF] text-lg leading-relaxed">
+              When I'm not coding, you can find me exploring new technologies, contributing 
+              to open-source projects, or sharing knowledge with the developer community. 
+              I believe in continuous learning and pushing the boundaries of what's possible.
+            </p>
 
-            <div>
-              <h3 className="text-2xl font-semibold mb-4 text-gray-800">
-                My Approach
-              </h3>
-              <p className="text-lg text-gray-600 leading-relaxed">
-                I believe in writing clean, maintainable code and staying up-to-date with 
-                the latest industry trends. Every project is an opportunity to learn and grow, 
-                and I'm always excited to tackle new challenges and technologies.
-              </p>
-            </div>
-
-            {/* Quick Stats */}
             <div className="grid grid-cols-2 gap-6 pt-6">
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                className="text-center p-4 bg-white rounded-lg shadow-md"
-              >
-                <div className="text-3xl font-bold text-primary mb-2">3+</div>
-                <div className="text-gray-600">Years Experience</div>
-              </motion.div>
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                className="text-center p-4 bg-white rounded-lg shadow-md"
-              >
-                <div className="text-3xl font-bold text-primary mb-2">20+</div>
-                <div className="text-gray-600">Projects Completed</div>
-              </motion.div>
+              <div className="text-center">
+                <div className="text-3xl font-bold text-[#04e3ff] mb-2">3+</div>
+                <div className="text-[#87A2BF]">Years Experience</div>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl font-bold text-[#04e3ff] mb-2">50+</div>
+                <div className="text-[#87A2BF]">Projects Completed</div>
+              </div>
             </div>
+
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="bg-[#04e3ff] text-white px-8 py-3 rounded-lg text-lg font-semibold hover:bg-[#03b8cc] transition-colors"
+              onClick={() => {
+                document.getElementById('projects')?.scrollIntoView({ 
+                  behavior: 'smooth' 
+                })
+              }}
+            >
+              View My Work
+            </motion.button>
           </motion.div>
         </div>
       </div>
