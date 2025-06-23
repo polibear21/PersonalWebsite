@@ -55,8 +55,7 @@ export default function Landing({ onTypingComplete }: LandingProps) {
               transition={{ duration: 0.8 }}
               className="text-xl lg:text-2xl text-[#87A2BF] mb-8"
             >
-              Full Stack Developer passionate about creating beautiful, 
-              functional, and user-centered digital experiences.
+              Full Stack Developer passionate about app and web app development. Also interested in AI and ML, I love applying my skills to different disciplines to create a change in the world.
             </motion.p>
             <motion.button
               initial={{ opacity: 0, y: 20 }}
@@ -87,7 +86,11 @@ export default function Landing({ onTypingComplete }: LandingProps) {
                 <div className="w-full h-full rounded-full bg-[#001328] p-2">
                   <div className="w-full h-full rounded-full bg-[#001328] flex items-center justify-center">
                     <span className="text-[#87A2BF] text-lg">
-                      David Zhao
+                      <img 
+                        src="/assets/david.jpg" 
+                        alt="David Zhao" 
+                        className="w-full h-full object-cover rounded-full" 
+                      />
                     </span>
                   </div>
                 </div>
